@@ -1,0 +1,465 @@
+/* =========================================
+   WORD IMPOSTER - CINEMATIC GLASSMORPHISM
+   ========================================= */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    background-color: #050510;
+    margin: 0;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100dvh;
+    /* Safe area insets for notched phones */
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 1. ANIMATED DEEP MESH GRADIENT */
+.custom-gradient {
+    background: radial-gradient(circle at 15% 50%, rgba(20, 49, 92, 0.4), transparent 50%),
+        radial-gradient(circle at 85% 30%, rgba(4, 17, 36, 0.8), transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(0, 212, 255, 0.1), transparent 60%);
+    background-color: #030a16;
+    background-size: 200% 200%;
+    animation: gradientShift 20s ease infinite alternate;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Floating Ambient Orbs */
+.bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    animation: floatOrb 15s ease-in-out infinite alternate;
+}
+
+.orb-1 {
+    width: 400px;
+    height: 400px;
+    background: rgba(0, 119, 255, 0.2);
+    top: -10%;
+    left: -10%;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 300px;
+    height: 300px;
+    background: rgba(131, 58, 180, 0.15);
+    bottom: 20%;
+    right: -5%;
+    animation-delay: -5s;
+    animation-duration: 20s;
+}
+
+.orb-3 {
+    width: 500px;
+    height: 500px;
+    background: rgba(0, 255, 200, 0.1);
+    top: 40%;
+    left: 30%;
+    animation-delay: -10s;
+    animation-duration: 25s;
+}
+
+@keyframes floatOrb {
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+    }
+
+    100% {
+        transform: translateY(50px) translateX(30px) scale(1.1);
+    }
+}
+
+/* 2. PREMIUM GLASSMORPHISM CLASSES */
+.glass-panel {
+    background: rgba(20, 25, 40, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+.glass-button {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.glass-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 195, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.glass-input {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+    background: rgba(0, 0, 0, 0.6);
+    border-color: rgba(0, 195, 255, 0.5);
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 195, 255, 0.2);
+}
+
+/* Text Gradients */
+.text-gradient-primary {
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.text-gradient-danger {
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.text-gradient-gold {
+    background: linear-gradient(to right, #FFDF00, #D4AF37);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* 3. UTILITIES & SCROLLBAR */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* 4. ANIMATIONS */
+.animate-fade-in {
+    animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pop {
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animate-glow {
+    animation: glowPulse 2s infinite alternate;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes glowPulse {
+    from {
+        box-shadow: 0 0 10px rgba(0, 195, 255, 0.2);
+    }
+
+    to {
+        box-shadow: 0 0 25px rgba(0, 195, 255, 0.6);
+    }
+}
+
+/* Loader */
+.loader {
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-left-color: #00c6ff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 5. MODE CARD PAGE TRANSITION */
+@keyframes wipeSweepIn {
+    0%   { transform: translateX(-100%) skewX(-8deg); opacity: 1; }
+    100% { transform: translateX(0%)    skewX(0deg);  opacity: 1; }
+}
+
+@keyframes wipeSweepOut {
+    0%   { transform: translateX(0%)   skewX(0deg);  opacity: 1; }
+    100% { transform: translateX(100%) skewX(8deg);  opacity: 1; }
+}
+
+@keyframes cardPop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.mode-card-click {
+    animation: cardPop 0.25s ease forwards;
+}
+
+#page-transition-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+}
+
+#page-transition-overlay.sweep-in {
+    pointer-events: all;
+    opacity: 1;
+    animation: wipeSweepIn 0.28s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+#page-transition-overlay.sweep-out {
+    pointer-events: none;
+    opacity: 1;
+    animation: wipeSweepOut 0.32s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+/* =========================================
+   RESPONSIVE — MOBILE / TABLET / DESKTOP
+   ========================================= */
+
+/* --- Safe bottom padding for iPhone home bar --- */
+.safe-pb {
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+}
+
+/* --- Minimum tap target size for touch --- */
+button, select, input[type="text"] {
+    min-height: 44px;
+}
+
+/* --- Mode screen cards: always fill width nicely --- */
+#mode-screen {
+    width: 100%;
+    padding: 0 1rem;
+}
+
+/* --- On small phones (< 390px): tighten spacing --- */
+@media (max-width: 390px) {
+    #mode-screen {
+        gap: 1rem;
+    }
+    /* shrink orbs so they don't dominate tiny screens */
+    .orb-1 { width: 200px; height: 200px; }
+    .orb-2 { width: 160px; height: 160px; }
+    .orb-3 { width: 260px; height: 260px; }
+
+    /* lobby code: smaller on very small screens */
+    #lobby-code-display { font-size: 3rem; }
+
+    /* chat input area: stack vertically */
+    #online-chat-container .flex.gap-2 {
+        flex-wrap: wrap;
+    }
+    #online-chat-container .flex.gap-2 #chat-input {
+        width: 100%;
+    }
+    #online-chat-container .flex.gap-2 button,
+    #online-chat-container .flex.gap-2 .relative {
+        flex: 1;
+    }
+}
+
+/* --- Standard mobile (390px – 640px) --- */
+@media (max-width: 640px) {
+    /* Mode cards: stack and fill full width */
+    #mode-screen {
+        flex-direction: column !important;
+        align-items: center;
+        gap: 1.25rem;
+    }
+    #local-mode-btn,
+    #online-mode-btn {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 130px !important;
+        height: auto !important;
+        padding: 1.25rem 1.5rem !important;
+    }
+
+    /* Setup screen: single column layout */
+    #setup-screen > .flex.flex-col.md\:flex-row {
+        flex-direction: column !important;
+        gap: 1rem;
+    }
+
+    /* Game active: single column */
+    #game-active-screen .flex.flex-col.md\:flex-row {
+        flex-direction: column !important;
+    }
+
+    /* Chat area: voice select full width below chat */
+    #online-chat-container .flex.gap-2 {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    #online-chat-container #chat-input {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+    #online-chat-container .flex.gap-2 > button {
+        flex: 1;
+    }
+    #online-chat-container .flex.gap-2 > .relative {
+        flex: 1;
+    }
+    #online-chat-container .flex.gap-2 > .relative select {
+        width: 100%;
+    }
+
+    /* Lobby: single column */
+    #online-lobby-screen .flex.flex-col.md\:flex-row {
+        flex-direction: column !important;
+    }
+
+    /* Reveal card: smaller height */
+    #pass-screen .relative.w-full {
+        height: 320px !important;
+    }
+
+    /* Theme screen: smaller button */
+    #generate-btn {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        font-size: 2rem;
+    }
+}
+
+/* --- Tablet (641px – 1024px) --- */
+@media (min-width: 641px) and (max-width: 1024px) {
+    #mode-screen {
+        flex-direction: row !important;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+        padding: 0 2rem;
+    }
+    #local-mode-btn,
+    #online-mode-btn {
+        flex: 1 1 280px;
+        max-width: 380px !important;
+    }
+}
+
+/* --- Desktop (> 1024px): cap max widths and center nicely --- */
+@media (min-width: 1025px) {
+    main {
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #mode-screen {
+        flex-direction: row !important;
+        justify-content: center;
+        gap: 3rem;
+    }
+    #local-mode-btn,
+    #online-mode-btn {
+        width: 380px !important;
+        min-height: 220px !important;
+    }
+
+    /* Lobby screen wider */
+    #online-lobby-screen {
+        max-width: 900px;
+    }
+
+    /* Game active wider */
+    #game-active-screen {
+        max-width: 1000px;
+    }
+}
+
+/* --- Large desktop / 4K (> 1440px) --- */
+@media (min-width: 1440px) {
+    #local-mode-btn,
+    #online-mode-btn {
+        width: 440px !important;
+        min-height: 240px !important;
+    }
+    #mode-screen {
+        gap: 4rem;
+    }
+}
+
+/* --- Landscape phone fix: prevent too-tall cards --- */
+@media (max-height: 500px) and (max-width: 900px) {
+    #pass-screen .relative.w-full {
+        height: 260px !important;
+    }
+    #pass-screen {
+        margin-top: 0.5rem !important;
+    }
+    header {
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+    }
+    #game-active-screen {
+        margin-top: 0.5rem !important;
+    }
+}
